@@ -4,6 +4,7 @@ import sql from 'mssql';
 export default class PizzaService {
     
     getAll = async () => {
+        let returnEntity;
         console.log('Estoy en: PizzaService.getAll()');
         try{
             let pool = await sql.connect(config);
