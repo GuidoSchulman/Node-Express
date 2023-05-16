@@ -3,37 +3,42 @@ import config from './dbconfig.js';
 import sql from 'mssql';
 import Pizza from "./Models/pizza.js";
 import PizzaService from './services/pizzas-services.js'
-
+import cors from "cors";
 
 const app= express();
 const port =3000;
+app.use(cors())
+
+app.use(express.static('public'))
 app.use(express.json());
-app.get('/:id', (req,res)=>{
+
+app.get('/:id', async(req,res)=>{
     let svc = new PizzaService();
-    let respuesta = svc.getById(req.params.id);
+    let respuesta = await svc.getById(req.params.id);
     res.send(respuesta);
 })
 
-app.get('/', (req,res)=>{
+app.get('/', async(req,res)=>{
     let svc = new PizzaService();
-    let respuesta = svc.getAll();
+    let respuesta = await svc.getAll();
     res.send(respuesta);
 })
 
-app.get('/delete/:id', (req,res)=>{
+app.get('/delete/:id', async (req,res)=>{
     let svc = new PizzaService();
-    let respuesta = svc.deletById(req.params.id);
+    let respuesta = await svc.deletById(req.params.id);
     res.send(respuesta);
 })
 
-app.post('/insert',(req,res)=>{
+app.post('/insert', async(req,res)=>{
     let svc = new PizzaService();
-    let respuesta = svc.insert(req.body);
+   
+    let respuesta = await svc.insert(req.body);
     res.send(respuesta);
 })
-app.put('/update',(req,res)=>{
+app.put('/update', async (req,res)=>{
     let svc = new PizzaService();
-    let respuesta = svc.update(req.body);
+    let respuesta = await svc.update(req.body);
     res.send(respuesta);
 })
 
