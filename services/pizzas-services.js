@@ -10,11 +10,11 @@ export default class PizzaService {
             let pool = await sql.connect(config);
             let result = await pool.request()
             .query('SELECT * FROM Pizzas');
-        returnEntity = result.recordsets[0][0];
+            returnEntity = result.recordset;
         } catch (error) {
             console.log(error);
         }
-         
+        return returnEntity;
     }
     getById = async (id) => {
         let returnEntity = null;
@@ -68,7 +68,7 @@ export default class PizzaService {
         }
     return rowsAffected;
     }
-    deletById = async (id) => {
+    deleteById = async (id) => {
         let rowsAffected = 0;
         console.log('Estoy en: PizzaService.deleteById(id)');
         try {
