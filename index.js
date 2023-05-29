@@ -32,7 +32,8 @@ app.delete('/api/pizzas/delete/:id', async (req,res)=>{
 
 app.post('/api/pizzas/insert', async(req,res)=>{
     let svc = new PizzaService();
-   
+   let cuerpo=req.body
+   console.log(cuerpo);
     let respuesta = await svc.insert(req.body);
     res.send(respuesta);
 })

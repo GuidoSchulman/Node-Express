@@ -40,7 +40,7 @@ export default class PizzaService {
             .input('pLibreGluten',sql.Bit,pizza.LibreGluten)
             .input('pImporte',sql.Float,pizza.Importe)
             .input('pDescripcion',sql.VarChar,pizza.Descripcion)
-            .query('INSERT [dbo].[Pizzas] [Nombre], [LibreGluten], [Importe], [Descripcion] VALUES (','@pNombre',',@pLibreGluten, @pImporte, ','@pDescripcion',')'),
+            .query('INSERT [dbo].[Pizzas] ( [Nombre], [LibreGluten], [Importe], [Descripcion]) VALUES (@pNombre,@pLibreGluten,@pImporte,@pImporte)')
             rowsAffected = result.rowsAffected
         }catch(error){
             console.log(error);
@@ -60,7 +60,7 @@ export default class PizzaService {
             .input('pLibreGluten',sql.Bit,pizza.LibreGluten)
             .input('pImporte',sql.Float,pizza.Importe)
             .input('pDescripcion',sql.VarChar,pizza.Descripcion)
-            .query('UPDATE [dbo].[Pizzas] SET [Nombre]=','@pNombre',' [LibreGluten]=@pLibreGluten, [Importe]=@pImporte, [Descripcion]=','@pDescripcion' , 'WHERE Id=@pId')
+            .query('UPDATE [dbo].[Pizzas] SET [Nombre]=@pNombre,[LibreGluten]=@pLibreGluten, [Importe]=@pImporte, [Descripcion]=@pImporte WHERE Id=@pId')
             rowsAffected = result.rowsAffected
         }catch(error){
             console.log(error);

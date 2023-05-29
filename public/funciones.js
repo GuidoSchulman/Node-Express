@@ -94,37 +94,67 @@ function EliminarPizza() {
         })
 
 
-    /*
-            .get("http://localhost:3000/api/pizzas/")
-            .then((result) => {
-                console.log(result.data);
-                listaPizzas = result.data
-                
-                listaPizzas.map((pizza) => {
-                    console.log(pizza.id);
-                    if (pizza.Id == id) {
-                       
-                        
-                    }
-                    else(
-                        pizzaElim= false
-                    )
-                    
-                })
-                console.log(pizzaElim);
-                if (pizzaElim ==false) {
-                    let text = document.querySelector("#todas");
-                    text.innerHTML = ''
-                    text.innerHTML += `
-                <h1>La pizza no existe</h1>
-                
-                `;
-                }
-            })
-            .catch((error) => {
-                console.log(error);
-            })
-    
-    */
 
 }
+function InsertPizza(){
+    let n= document.querySelector("#nombre").value
+    let lg= document.querySelector("#libreGluten").checked
+    let i= document.querySelector("#importe").value
+    let d= document.querySelector("#descripcion").value
+    let text = document.querySelector("#todas");
+    const Pizza={
+        Nombre:n,
+        LibreGluten:lg,
+        Importe:i,
+        Descripcion:d
+
+
+    }
+    axios 
+    .post("http://localhost:3000/api/pizzas/insert/",Pizza)
+    .then(()=>{
+        text.innerHTML=''
+        text.innerHTML+= `
+        <h1>Pizza Creada</h1>
+        
+        `;
+    })
+    .catch((error) => {
+
+        console.log(error);
+    })
+}
+
+function UpdatePizza(){
+    let id=document.querySelector("#idUpdate").value
+    let n= document.querySelector("#nombreUpdate").value
+    let lg= document.querySelector("#libreGlutenUpdate").checked
+    let i= document.querySelector("#importeUpdate").value
+    let d= document.querySelector("#descripcionUpdate").value
+    let text = document.querySelector("#todas");
+    const Pizza={
+        Id:id,
+        Nombre:n,
+        LibreGluten:lg,
+        Importe:i,
+        Descripcion:d
+
+
+    }
+    axios 
+    .put("http://localhost:3000/api/pizzas/update/",Pizza)
+    .then(()=>{
+        text.innerHTML=''
+        text.innerHTML+= `
+        <h1>Pizza Actualizada</h1>
+        
+        `;
+    })
+    .catch((error) => {
+
+        console.log(error);
+    })
+}
+
+
+
