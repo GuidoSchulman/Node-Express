@@ -19,4 +19,15 @@ router.post('', async (req,res)=>{
     return res.status(201).json(pizza);
 })
 
+router.put('', async (req,res)=>{
+    const pizza = await pizzaService.update(req.body);
+    return res.status(201).json(pizza);
+})
+
+router.delete('/:id', async (req,res)=>{
+    const pizza = await pizzaService.deleteById(req.params.id);
+    return res.status(201).json(pizza);
+})
+
+
 export default router
