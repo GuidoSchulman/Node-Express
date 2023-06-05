@@ -17,4 +17,34 @@ export default class IngredienteService {
         }
         return returnEntity;
     }
+    getUnIngrediente=async(id)=>{
+        let returnEntity = null;
+        console.log('Estoy en: IngredienteService.getUnIngrediente(id)');
+        try {
+            let pool = await sql.connect(config);
+            let result = await pool.request()
+                .input('pId', sql.Int, id)
+                .query('SELECT * FROM Ingredientes Where id = @pId');
+            returnEntity = result.recordsets[0][0];
+        } catch (error) {
+            console.log(error);
+        }
+        return returnEntity;
+    }
+    deleteIngredienteXPizzaById=async(id)=>{
+        let returnEntity=null;
+        console.log(('Estoy en: IngredienteService.deleteIngredienteXPizzaById(id)'));
+        try {
+            let pool = await sql.connect(config);
+            let result = await pool.request()
+                .input('pId', sql.Int, id)
+                .query('DELETE * from IngredientesXPizzas where Id=@pId')
+            rowsAffected = result.rowsAffected;
+
+
+        } catch (error) {
+            console.log(error);
+        }
+        return rowsAffected
+    }
 }

@@ -8,8 +8,12 @@
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="funciones.js"></script>
+    <script src="funcionesIngredientes.js"></script>
   </head>
   <body>
+    <center>
+    <h1>PIZZAS</h1>
+    </center>
     <button onclick="LlamarGetAll()">Mostrar Todas</button>
     <br>
     <input name="id" placeholder="Ingresar Id Pizza para buscar" id="id"></input>
@@ -31,9 +35,22 @@
     <input id="descripcionUpdate" placeholder="Descripcion"></input>
     <button onclick="UpdatePizza()">UpdeatearPizza</button>
     <br>
-    <input name="id" placeholder="Ingresar Id Pizza para buscar ingredientes" id="idIngredientes"></input>
+    <center>
+    <h1>INGREDIENTES</h1>
+    </center>
+    <input name="id" placeholder="Averiguar Ingredientes de Pizza" id="idIngredientes"></input>
     <button onclick="ConseguirIngredientes()">buscar</button>
+   
+    <br>
+    <input name="id" placeholder="Buscar 1 Ingrediente por Id" id="idBuscarIngrediente"></input>
+    <button onclick="ConseguirIngredientesPorId()">buscar</button>
+    <br>
+    <input name="id" placeholder="Eliminar 1 IngredienteXPizza por Id" id="idElimIngrediente"></input>
+    <button onclick="EliminarIngredientesXPizza()">buscar</button>
+
+    <center>
+      <h1>RESULTADOS</h1>
+      </center>
     <div id="todas"></div>
-    
   </body>
 </html>
