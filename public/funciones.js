@@ -156,5 +156,33 @@ function UpdatePizza(){
     })
 }
 
+function ConseguirIngredientes() {
+    let id = document.querySelector("#idIngredientes").value
+    
+    axios
+        .get("http://localhost:3000/api/pizzas/ingredientes/" + id)
+        .then((result) => {
+            console.log(result.data);
+            mostrarIngredientes(result.data)
+        })
+        .catch((error) => {
 
+            console.log(error);
+        })
+}
+function mostrarIngredientes(ingredientes) {
 
+    let text = document.querySelector("#todas");
+    
+        text.innerHTML = ''
+
+        ingredientes.forEach(ingrediente => {
+        text.innerHTML += `
+        <ul>${ingrediente.Nombre}</ul>
+        <ul>${ingrediente.Id}</ul>
+        `;
+        });
+        
+    
+
+}

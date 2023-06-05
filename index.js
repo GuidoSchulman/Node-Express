@@ -4,6 +4,7 @@ import sql from 'mssql';
 import Pizza from "./Models/pizza.js";
 import PizzaService from './services/pizzas-services.js'
 import cors from "cors";
+import IngredienteService from "./services/ingredientes-services.js";
 
 const app= express();
 const port =3000;
@@ -42,6 +43,14 @@ app.put('/api/pizzas/update', async (req,res)=>{
     let respuesta = await svc.update(req.body);
     res.send(respuesta);
 })
+
+app.get('/api/pizzas/ingredientes/:id', async (req,res)=>{
+    let svc= new IngredienteService();
+    let respuesta = await svc.getIngredientes(req.params.id)
+    console.log(respuesta);
+    res.send(respuesta);
+})
+
 
 app.listen(port,()=>{
     console.log('example app listening on port '+ port)
