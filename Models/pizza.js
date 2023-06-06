@@ -4,5 +4,6 @@ class Pizza{
     libreGluten;
     importe;
     descripcion;
+    ingredientes;
 }
 export default Pizza

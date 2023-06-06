@@ -56,11 +56,7 @@ app.get('/api/pizzas/ingredientes/u/:id', async (req,res)=>{
     console.log(respuesta);
     res.send(respuesta);
 })
-app.delete('/api/pizzas/ingredientes/delete/:id', async (req,res)=>{
-    let svc = new IngredienteService();
-    let respuesta = await svc.deleteIngredienteXPizzaById(req.params.id);
-    res.send(respuesta);
-})
+
 
 
 app.listen(port,()=>{

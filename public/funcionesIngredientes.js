@@ -47,31 +47,6 @@ function ConseguirIngredientesPorId(){
     })
 }
 
-//no funca
-function EliminarIngredientesXPizza() {
-    let id = document.querySelector("#idElimIngrediente").value
-
-    let text = document.querySelector("#todas");
-    axios
-        .delete("http://localhost:3000/api/pizzas/ingredientes/delete/" + id)
-        .then((result) => {
-            if (result.data == 1) {
-                console.log(result.data);
-                text.innerHTML = ''
-                text.innerHTML += `
-<h1>Eliminada</h1>
-
-`;
-            }
-            else {
-                text.innerHTML = ''
-                text.innerHTML += `
-            <h1>No existe</h1>
-            
-            `;
-            }
-        })
 
 
 
-}

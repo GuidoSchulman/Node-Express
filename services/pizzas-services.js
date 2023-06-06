@@ -9,8 +9,9 @@ export default class PizzaService {
         try{
             let pool = await sql.connect(config);
             let result = await pool.request()
-            .query('SELECT * FROM Pizzas');
+            .query('SELECT pizzas.*, Ingredientes.Nombre  AS Ingredientes FROM IngredientesXPizzas INNER JOIN Ingredientes on IngredientesXPizzas.IdIngrediente =Ingredientes.Id  INNER JOIN Pizzas on IngredientesXPizzas.IdPizza =Pizzas.id');
             returnEntity = result.recordset;
+            console.log(returnEntity);
         } catch (error) {
             console.log(error);
         }

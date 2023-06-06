@@ -25,6 +25,8 @@ function mostrarPizzas(ListaPizzas) {
     <ul>${pizza.LibreGluten}</ul>
     <ul>${pizza.Importe}</ul>
     <ul>${pizza.Descripcion}</ul>
+    <ul>${pizza.ingredientes}</ul>
+    <br>
     `;
 
     })

@@ -31,20 +31,5 @@ export default class IngredienteService {
         }
         return returnEntity;
     }
-    deleteIngredienteXPizzaById=async(id)=>{
-        let returnEntity=null;
-        console.log(('Estoy en: IngredienteService.deleteIngredienteXPizzaById(id)'));
-        try {
-            let pool = await sql.connect(config);
-            let result = await pool.request()
-                .input('pId', sql.Int, id)
-                .query('DELETE * from IngredientesXPizzas where Id=@pId')
-            rowsAffected = result.rowsAffected;
-
-
-        } catch (error) {
-            console.log(error);
-        }
-        return rowsAffected
-    }
+   
 }
