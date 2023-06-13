@@ -1,4 +1,4 @@
-import express from "express";
+import express, { request, response } from "express";
 import config from './dbconfig.js';
 import sql from 'mssql';
 import Pizza from "./Models/pizza.js";
@@ -8,10 +8,46 @@ import IngredienteService from "./services/ingredientes-services.js";
 
 const app= express();
 const port =3000;
+const APIKEY="123456789";
 app.use(cors())
 
 app.use(express.static('public'))
 app.use(express.json());
+
+const horaMiddleware = function (req,res,next){
+    let horaInicio= new Date().getTime()
+    next()
+    let horaRealizdo= new Date().getTime()
+    let TiempoRealización = horaRealizdo-horaInicio
+    console.log("Tardó: " + TiempoRealización+ " milisegundos");
+
+}
+const CheckApiKey = function (req,res,next){
+
+    let key = req.get('ApiKey');
+ 
+    console.log(APIKEY);
+    console.log(key);
+    if (APIKEY==key ){
+
+        next()
+    }
+    else{
+        res.status(401).send('Unauthorized, es necesario una ApiKey Valida.')
+    }
+}
+const CreatedByMiddleware=function (req,res,next){
+    const NombreAlumno="Guido"
+    console.log(NombreAlumno);
+    res.setHeader("CreatedBy", NombreAlumno)
+    next()
+}
+
+
+
+app.use(CheckApiKey)
+app.use(horaMiddleware)
+app.use(CreatedByMiddleware)
 
 app.get('/api/pizzas/:id', async(req,res)=>{
     let svc = new PizzaService();
